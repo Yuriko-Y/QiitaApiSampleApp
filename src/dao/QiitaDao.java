@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class QiitaDao {
@@ -13,25 +14,37 @@ public class QiitaDao {
 	static final String USER = "root";
 	static final String PASS = "root";
 
-	public void findAll(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate, String qiitaTag) {
+	//登録メソッド
+	public boolean registerQiita(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate,
+			String qiitaTag) {
 		try {
 			//MySQL に接続する
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//データベースに接続
 			Connection conn = DriverManager.getConnection(URL, USER, PASS);
+			//SQL文
+			String sql = "INSERT INTO articles(url,title,user_name,tag,date)"
+					+ " VALUES(?,?,?,?,?)";
 
-			// データベースに対する処理
-			System.out.println("データベースに接続に成功");
+			PreparedStatement pStatement = conn.prepareStatement(sql);
 
-			System.out.println(qiitaTitle);
-			System.out.println(qiitaUser);
-			System.out.println(qiitaUrl);
-			System.out.println(qiitaDate);
-			System.out.println(qiitaTag);
+			pStatement.setString(1, qiitaUrl);
+			pStatement.setString(2, qiitaTitle);
+			pStatement.setString(3, qiitaUser);
+			pStatement.setString(4, qiitaTag);
+			pStatement.setString(5, qiitaDate);
+
+			int result=pStatement.executeUpdate();
+
+			if (result!=1) {
+				return false;
+			}
 
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 }

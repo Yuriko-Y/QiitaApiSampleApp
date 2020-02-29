@@ -26,7 +26,7 @@ URL:<input type="text" id="quiitaurl" name="input01">
     URL:<input type="text" id="qiita__url" name="qiitaUrl"size="50"><br>
     DATE:<input type="text" id="qiita__date" name="qiitaDate"size="10"><br>
     TAG:<input type="text" id="qiita__tag" name="qiitaTag"size="30"><br>
-    <input type="submit" value="送信" />
+    <input type="submit" value="登録" />
     </form>
 </body>
 </html>
