@@ -6,16 +6,27 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/sample.css">
-<script src="js/sample.js"type="text/javascript"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ <script src="js/register.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-<!-- JSPからServlet呼び出し(データ渡し) -->
-<div class="sample">
-<h1>接続確認</h1>
-</div>
+URL:<input type="text" id="quiitaurl" name="input01">
+    <button id="submit">そーしん</button>
 
-<!-- <a href="/プロジェクト名/サーブレット名">リンクの文字</a> -->
-<a href="/ConnectSample/Secondservlet">セカンドサーブレット</a>
+    <ul id="js_append_area">
+        <!-- <li>-->
+        <!-- <a href=""></a> -->
+        <!-- </li> -->
+        <!-- <p></p> -->
+    </ul>
+    <form method="get" action="">
+    TITLE:<input type="text" id="qiita__title" name="qiitatitle"size="60"><br>
+    NAME:<input type="text" id="qiita__name" name="qiitauser"size="10"><br>
+    URL:<input type="text" id="qiita__url" name="qiitaurl"size="50"><br>
+    DATE:<input type="text" id="qiita__date" name="qiitadate"size="10"><br>
+    TAG:<input type="text" id="qiita__tag" name="qiitadate"size="30"><br>
+    <input type="submit" value="送信" />
+    </form>
 </body>
 </html>
