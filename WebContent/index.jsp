@@ -20,12 +20,12 @@ URL:<input type="text" id="quiitaurl" name="input01">
         <!-- </li> -->
         <!-- <p></p> -->
     </ul>
-    <form method="get" action="">
-    TITLE:<input type="text" id="qiita__title" name="qiitatitle"size="60"><br>
-    NAME:<input type="text" id="qiita__name" name="qiitauser"size="10"><br>
-    URL:<input type="text" id="qiita__url" name="qiitaurl"size="50"><br>
-    DATE:<input type="text" id="qiita__date" name="qiitadate"size="10"><br>
-    TAG:<input type="text" id="qiita__tag" name="qiitadate"size="30"><br>
+    <form method="get" action="./Mainservlet">
+    TITLE:<input type="text" id="qiita__title" name="qiitaTitle"size="60"><br>
+    NAME:<input type="text" id="qiita__name" name="qiitaUser"size="10"><br>
+    URL:<input type="text" id="qiita__url" name="qiitaUrl"size="50"><br>
+    DATE:<input type="text" id="qiita__date" name="qiitaDate"size="10"><br>
+    TAG:<input type="text" id="qiita__tag" name="qiitaTag"size="30"><br>
     <input type="submit" value="送信" />
     </form>
 </body>
