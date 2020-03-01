@@ -12,14 +12,9 @@
 </head>
 <body>
 URL:<input type="text" id="quiitaurl" name="input01">
-    <button id="submit">そーしん</button>
+    <button id="submit">送信</button>
 
-    <ul id="js_append_area">
-        <!-- <li>-->
-        <!-- <a href=""></a> -->
-        <!-- </li> -->
-        <!-- <p></p> -->
-    </ul>
+
     <form method="get" action="./Mainservlet">
     TITLE:<input type="text" id="qiita__title" name="qiitaTitle"size="60"><br>
     NAME:<input type="text" id="qiita__name" name="qiitaUser"size="10"><br>
