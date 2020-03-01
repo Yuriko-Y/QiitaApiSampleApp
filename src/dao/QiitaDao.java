@@ -46,5 +46,38 @@ public class QiitaDao {
 		}
 		return true;
 	}
+	//登録メソッド
+		public boolean findAll(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate,
+				String qiitaTag) {
+			try {
+				//MySQL に接続する
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				//データベースに接続
+				Connection conn = DriverManager.getConnection(URL, USER, PASS);
+				//SQL文
+				String sql = "INSERT INTO articles(url,title,user_name,tag,date)"
+						+ " VALUES(?,?,?,?,?)";
+
+				PreparedStatement pStatement = conn.prepareStatement(sql);
+
+				pStatement.setString(1, qiitaUrl);
+				pStatement.setString(2, qiitaTitle);
+				pStatement.setString(3, qiitaUser);
+				pStatement.setString(4, qiitaTag);
+				pStatement.setString(5, qiitaDate);
+
+				int result=pStatement.executeUpdate();
+
+				if (result!=1) {
+					return false;
+				}
+
+			} catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		}
+
 
 }
