@@ -3,7 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javabeans.Article;
 
 public class QiitaDao {
 	//DB接続用定数
@@ -46,38 +51,45 @@ public class QiitaDao {
 		}
 		return true;
 	}
-	//登録メソッド
-		public boolean findAll(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate,
-				String qiitaTag) {
-			try {
-				//MySQL に接続する
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				//データベースに接続
-				Connection conn = DriverManager.getConnection(URL, USER, PASS);
-				//SQL文
-				String sql = "INSERT INTO articles(url,title,user_name,tag,date)"
-						+ " VALUES(?,?,?,?,?)";
 
-				PreparedStatement pStatement = conn.prepareStatement(sql);
 
-				pStatement.setString(1, qiitaUrl);
-				pStatement.setString(2, qiitaTitle);
-				pStatement.setString(3, qiitaUser);
-				pStatement.setString(4, qiitaTag);
-				pStatement.setString(5, qiitaDate);
+	public List<Article> findAll() {
+		List<Article> articleList = new ArrayList<Article>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-				int result=pStatement.executeUpdate();
+			//全部の記事表示
+			String sql = "SELECT * FROM articles";
 
-				if (result!=1) {
-					return false;
-				}
+			PreparedStatement pStatement = conn.prepareStatement(sql);
 
-			} catch (SQLException | ClassNotFoundException e) {
-				e.printStackTrace();
-				return false;
+			ResultSet rSet = pStatement.executeQuery();
+
+			while (rSet.next()) {
+
+				int id = rSet.getInt("id");
+				String url = rSet.getString("url");
+				String title = rSet.getString("title");
+				String user_name = rSet.getString("user_name");
+				String tag = rSet.getString("tag");
+				String date = rSet.getString("date");
+
+				Article article =new Article(id, url, title, user_name, tag, date);
+				articleList.add(article);
+
 			}
-			return true;
+
+			return articleList;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
+		return articleList;
+
+	}
 
 
 }
