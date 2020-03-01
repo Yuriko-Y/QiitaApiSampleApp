@@ -60,7 +60,7 @@ public class QiitaDao {
 			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
 			//全部の記事表示
-			String sql = "SELECT * FROM articles";
+			String sql = "SELECT * FROM articles ORDER BY date DESC";
 
 			PreparedStatement pStatement = conn.prepareStatement(sql);
 
@@ -90,6 +90,35 @@ public class QiitaDao {
 		return articleList;
 
 	}
+	//idが一致するものをデータベースから削除
+		public boolean deleteSql(String parameterId) {
+
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(URL, USER, PASS);
+
+				String sql = "DELETE FROM articles WHERE id=?";
+
+				PreparedStatement pStatement = conn.prepareStatement(sql);
+				pStatement.setString(1, parameterId);
+
+				int result = pStatement.executeUpdate();
+				if (result != 1) {
+					return false;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				return false;
+
+			}
+			return true;
+
+		}
 
 
 }

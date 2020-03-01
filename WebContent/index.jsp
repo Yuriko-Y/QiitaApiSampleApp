@@ -54,6 +54,7 @@
 
 
 					<div class="parent__right">
+						<form action="./Deleteservlet" method="get">
 						<p class="date"><%=article.getDate() %></p>
 						<p class="title"><%=article.getTitle() %></p>
 						<p class="url">【URL】</p>
@@ -62,7 +63,9 @@
 						<p class="tag">【tag】<%=article.getTag() %></p>
 						<div class="name__view">
 							<p class="item">【User name】<%=article.getUser_name() %></p>
-							<button class="item">削除</button>
+							<input type="hidden" name="deleteId" value="<%=article.getId() %>">
+							<input  class="item" type="submit" value=" 削除 ">
+							</form>
 						</div>
 
 					</div>
