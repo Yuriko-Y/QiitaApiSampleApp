@@ -60,7 +60,7 @@ public class QiitaDao {
 			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
 			//全部の記事表示
-			String sql = "SELECT * FROM articles ORDER BY date DESC";
+			String sql = "SELECT * FROM articles ORDER BY id DESC";
 
 			PreparedStatement pStatement = conn.prepareStatement(sql);
 

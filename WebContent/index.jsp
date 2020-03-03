@@ -49,7 +49,7 @@
 	</div>
 	<!--modal-->
 
-	<h3>記事一覧表示</h3>
+
 
 	<%
 		if (allArticles == null) {
