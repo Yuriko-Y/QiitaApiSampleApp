@@ -26,6 +26,13 @@ public class ArticlesManager {
 	public void deleteArticles(String deleteId) {
 		qiitaDao.deleteSql(deleteId);
 	}
-
+	/**
+     * データベースに記事を登録
+     * @param qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag 登録する情報
+     * @return なし
+     */
+	public void registerArticles(String qiitaTitle,String qiitaUser,String qiitaUrl,String qiitaDate,String qiitaTag) {
+		qiitaDao.registerQiita(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag);
+	}
 
 }

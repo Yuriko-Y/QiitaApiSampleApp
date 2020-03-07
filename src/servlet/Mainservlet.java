@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.QiitaDao;
+import model.ArticlesManager;
 
 @WebServlet("/Mainservlet")
 public class Mainservlet extends HttpServlet {
@@ -25,18 +25,9 @@ public class Mainservlet extends HttpServlet {
 		String qiitaDate = request.getParameter("qiitaDate");
 		String qiitaTag = request.getParameter("qiitaTag");
 
-		QiitaDao qiitaDao = new QiitaDao();
-		boolean canRegister = qiitaDao.registerQiita(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag);
+		ArticlesManager articlesManager=new ArticlesManager();
+		articlesManager.registerArticles(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag);
 
-		if (canRegister) {
-			//登録成功
-			msg = "登録に成功しました。";
-
-		} else {
-			//登録失敗
-			msg = "登録に失敗しました。";
-
-		}
 		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
