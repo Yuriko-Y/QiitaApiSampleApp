@@ -7,6 +7,7 @@ $(function() {
 	        $('.js-modal').fadeOut();
 	        return false;
 	    });
+
 	// 送信ボタンをクリックすると処理
 	$('#submit').click(function() {
 

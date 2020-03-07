@@ -11,38 +11,39 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.QiitaDao;
 
-
 @WebServlet("/Mainservlet")
 public class Mainservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String msg="";
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String msg = "";
 
-		String qiitaTitle=request.getParameter("qiitaTitle");
-		String qiitaUser=request.getParameter("qiitaUser");
-		String qiitaUrl=request.getParameter("qiitaUrl");
-		String qiitaDate=request.getParameter("qiitaDate");
-		String qiitaTag=request.getParameter("qiitaTag");
+		String qiitaTitle = request.getParameter("qiitaTitle");
+		String qiitaUser = request.getParameter("qiitaUser");
+		String qiitaUrl = request.getParameter("qiitaUrl");
+		String qiitaDate = request.getParameter("qiitaDate");
+		String qiitaTag = request.getParameter("qiitaTag");
 
-		QiitaDao qiitaDao=new QiitaDao();
-		boolean canRegister=qiitaDao.registerQiita(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag);
+		QiitaDao qiitaDao = new QiitaDao();
+		boolean canRegister = qiitaDao.registerQiita(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag);
 
 		if (canRegister) {
 			//登録成功
-			msg="登録に成功しました。";
-			System.out.println(msg);
-		}else {
+			msg = "登録に成功しました。";
+
+		} else {
 			//登録失敗
-			msg="登録に失敗しました。";
-			System.out.println(msg);
+			msg = "登録に失敗しました。";
+
 		}
 		//フォワード
-		RequestDispatcher dispatcher=request.getRequestDispatcher("/index.jsp");
-		  dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+		dispatcher.forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 

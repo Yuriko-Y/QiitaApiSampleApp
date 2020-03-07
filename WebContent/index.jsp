@@ -1,10 +1,11 @@
+<%@page import="model.ArticlesManager"%>
 <%@page import="dao.QiitaDao"%>
 <%@page import="javabeans.Article"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	List<Article> allArticles = (List<Article>) session.getAttribute("allArticles");
+	List<Article> articles = (List<Article>) session.getAttribute("articles");
 %>
 
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="js/register.js"></script>
+  <script type="text/javascript" src="js/delete.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -52,11 +54,11 @@
 
 
 	<%
-		if (allArticles == null) {
+		if (articles == null) {
 	%>
 	<%
-		QiitaDao qiitaDao = new QiitaDao();
-			List<Article> articleList = qiitaDao.findAll();
+			ArticlesManager articlesManager=new ArticlesManager();
+			List<Article> articleList = articlesManager.newFiveArticles();
 	%>
 	<%
 		for (Article article : articleList) {
@@ -69,7 +71,7 @@
 
 
 					<div class="parent__right">
-						<form action="./Deleteservlet" method="get">
+						<form action="./Homeservlet" method="get"onsubmit="return checkdelete();">
 							<p class="date"><%=article.getDate()%></p>
 							<p class="title"><%=article.getTitle()%></p>
 							<p class="url">【URL】</p>
@@ -80,8 +82,9 @@
 								<p class="item">
 									【User name】<%=article.getUser_name()%></p>
 								<input type="hidden" name="deleteId"
-									value="<%=article.getId()%>"> <input class="item"
-									type="submit" value=" 削除 ">
+									value="<%=article.getId()%>">
+									<input class="item"
+									type="submit" value="削除">
 						</form>
 					</div>
 

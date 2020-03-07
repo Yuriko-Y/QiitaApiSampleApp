@@ -11,21 +11,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.QiitaDao;
 import javabeans.Article;
+import model.ArticlesManager;
 
-@WebServlet("/Secondservlet")
-public class Secondservlet extends HttpServlet {
+@WebServlet("/Homeservlet")
+public class Homeservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		QiitaDao qiitaDao = new QiitaDao();
-
-		List<Article> articles = qiitaDao.findAll();
-
+		//今表示されている記事
 		HttpSession session = request.getSession();
-		session.setAttribute("allArticles", articles);
+		List<Article> articles=(List<Article>) session.getAttribute("articles");
+
+		//パラメーター
+		String deleteId=request.getParameter("deleteId");
+
+		ArticlesManager articlesManager=new ArticlesManager();
+
+		if (deleteId!=null) {
+			articlesManager.deleteArticles(deleteId);
+		}
+
+
+		//セッションに上書き
+		session.setAttribute("articles", articles);
 
 		//フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
