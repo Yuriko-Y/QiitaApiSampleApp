@@ -132,6 +132,7 @@
 									【User name】<%=artcles.getUser_name()%></p>
 								<input type="hidden" name="deleteId"
 									value="<%=artcles.getId()%>">
+						
 									<input class="item"
 									type="submit" value="削除">
 						</form>

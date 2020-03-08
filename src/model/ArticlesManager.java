@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -43,6 +44,8 @@ public class ArticlesManager {
 	public List<Article> searchGetArticles(String search) {
 		//DBから全記事を取得
 		List<Article> articles=qiitaDao.allArticles();
+		//ヒットした記事だけ入れるリスト
+		List<Article> resultArticles=new ArrayList<Article>();
 
 		Iterator<Article> iterator=articles.iterator();
 		while (iterator.hasNext()) {
@@ -57,16 +60,21 @@ public class ArticlesManager {
 			stringBuilder.append(tag);
 			stringBuilder.append(name);
 
-			if (stringBuilder.toString().matches(".*" + search + ".*")) {
+			String smallStringBuilder = stringBuilder.toString().toLowerCase();
+			String smallSearch = search.toLowerCase();
+			//			if (smallSearch.equals("*")) {
+//				smallSearch = ".*";
+//			}
+			if (smallStringBuilder.toString().matches(".*" + smallSearch + ".*")) {
 
-				articles.add(article);
+				resultArticles.add(article);
 
 			}
 
 		}
 
 
-		return articles;
+		return resultArticles;
 
 	}
 
