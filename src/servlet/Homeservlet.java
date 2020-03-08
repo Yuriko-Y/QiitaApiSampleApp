@@ -26,11 +26,14 @@ public class Homeservlet extends HttpServlet {
 
 		//パラメーター
 		String deleteId=request.getParameter("deleteId");
+		String search=request.getParameter("searchword");
 
 		ArticlesManager articlesManager=new ArticlesManager();
 
 		if (deleteId!=null) {
 			articlesManager.deleteArticles(deleteId);
+		}else if (search!=null) {
+			articles=articlesManager.searchGetArticles(search);
 		}
 
 

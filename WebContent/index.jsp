@@ -12,6 +12,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="cssnew/search.css">
 <link rel="stylesheet" href="cssnew/sample.css">
 <link rel="stylesheet" href="cssnew/reset.css">
 <link rel="stylesheet" href="cssnew/modal.css">
@@ -19,9 +21,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="js/register.js"></script>
   <script type="text/javascript" src="js/delete.js"></script>
-<title>Insert title here</title>
+<title>Miita</title>
 </head>
 <body>
+	<header>
+	 <div class="searchbox__left">
+        <form method="get" action="./Homeservlet" class="search_container">
+            <input type="text" size="25" placeholder="キーワード検索" name="searchword">
+            <input type="submit" value="&#xf002">
+          </form>
 	<div class="content__modal">
 		<button class="js-modal-open">登録</button>
 		<!-- <a class="js-modal-open" href="">クリックでモーダルを表示</a> -->
@@ -50,6 +58,8 @@
 		<!--modal__inner-->
 	</div>
 	<!--modal-->
+	 </div>
+    </header>
 
 
 
@@ -97,11 +107,48 @@
 		}
 	%>
 	<%
+		}else{
+	%>
+<%
+		for (Article artcles : articles) {
+	%>
+
+	<div>
+		<ul>
+			<li>
+				<div class="contens">
+
+
+					<div class="parent__right">
+						<form action="./Homeservlet" method="get"onsubmit="return checkdelete();">
+							<p class="date"><%=artcles.getDate()%></p>
+							<p class="title"><%=artcles.getTitle()%></p>
+							<p class="url">【URL】</p>
+							<a class="url__href" href=<%=artcles.getUrl()%>><%=artcles.getUrl()%></a>
+							<p class="tag">
+								【tag】<%=artcles.getTag()%></p>
+							<div class="name__view">
+								<p class="item">
+									【User name】<%=artcles.getUser_name()%></p>
+								<input type="hidden" name="deleteId"
+									value="<%=artcles.getId()%>">
+									<input class="item"
+									type="submit" value="削除">
+						</form>
+					</div>
+
+				</div>
+	</div>
+	</li>
+	</ul>
+	</div>
+	<%
 		}
 	%>
 
 
 
+	<%} %>
 
 </body>
 </html>

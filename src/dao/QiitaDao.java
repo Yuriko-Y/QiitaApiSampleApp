@@ -119,6 +119,43 @@ public class QiitaDao {
 			return true;
 
 		}
+		public List<Article> allArticles() {
+			List<Article> articleList = new ArrayList<Article>();
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(URL, USER, PASS);
+
+				//全部の記事表示
+				String sql = "SELECT * FROM articles";
+
+				PreparedStatement pStatement = conn.prepareStatement(sql);
+
+				ResultSet rSet = pStatement.executeQuery();
+
+				while (rSet.next()) {
+
+					int id = rSet.getInt("id");
+					String url = rSet.getString("url");
+					String title = rSet.getString("title");
+					String user_name = rSet.getString("user_name");
+					String tag = rSet.getString("tag");
+					String date = rSet.getString("date");
+
+					Article article =new Article(id, url, title, user_name, tag, date);
+					articleList.add(article);
+
+				}
+
+				return articleList;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return articleList;
+
+		}
 
 
 }

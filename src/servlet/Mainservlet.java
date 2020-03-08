@@ -17,7 +17,6 @@ public class Mainservlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String msg = "";
 
 		String qiitaTitle = request.getParameter("qiitaTitle");
 		String qiitaUser = request.getParameter("qiitaUser");

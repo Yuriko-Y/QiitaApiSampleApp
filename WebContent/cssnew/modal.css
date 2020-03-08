@@ -1,10 +1,5 @@
-/* *{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-} */
 .content__modal{
-    margin: 0 auto;
+    margin: 0 110px;
     padding: 40px;
 }
 .js-modal-open {
@@ -27,6 +22,7 @@
     appearance: none;
   }
 
+
   .btn-gradation:hover {
     background-position: right center;
   }
@@ -44,7 +40,8 @@
     width: 100%;
 }
 .modal__content{
-	background-image: linear-gradient(-30deg, #FA8A6E, #FFAF63);
+    background-image: linear-gradient(-30deg, #FA8A6E, #FFAF63);
+    /* background: #FFAF63; */
     left: 50%;
     padding: 40px;
     position: absolute;
@@ -53,8 +50,8 @@
     width: 60%;
 }
 #modal__title{
-	font-weight: bold;
+    font-weight: bold;
     font-size: 20px;
     text-align: center;
-    color: #FFF;
+    color: #E3794D;
 }
