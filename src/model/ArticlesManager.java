@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.ibm.icu.text.Transliterator;
+
 import dao.QiitaDao;
 import javabeans.Article;
 
@@ -47,6 +49,10 @@ public class ArticlesManager {
 		//ヒットした記事だけ入れるリスト
 		List<Article> resultArticles=new ArrayList<Article>();
 
+		Transliterator transliterator = Transliterator.getInstance("Fullwidth-Halfwidth");
+		String resultSearch= transliterator.transliterate(search);
+
+
 		Iterator<Article> iterator=articles.iterator();
 		while (iterator.hasNext()) {
 			Article article = (Article) iterator.next();
@@ -60,8 +66,11 @@ public class ArticlesManager {
 			stringBuilder.append(tag);
 			stringBuilder.append(name);
 
+
 			String smallStringBuilder = stringBuilder.toString().toLowerCase();
-			String smallSearch = search.toLowerCase();
+			String smallSearch = resultSearch.toLowerCase();
+
+
 			//			if (smallSearch.equals("*")) {
 //				smallSearch = ".*";
 //			}
