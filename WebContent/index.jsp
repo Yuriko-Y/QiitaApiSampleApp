@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="cssnew/sample.css">
 <link rel="stylesheet" href="cssnew/reset.css">
 <link rel="stylesheet" href="cssnew/modal.css">
+<link rel="stylesheet" href="cssnew/select.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="js/register.js"></script>
@@ -59,6 +60,15 @@
 	</div>
 	<!--modal-->
 	 </div>
+	  <form action="" method="get">
+     <div class="cp_ipselect cp_sl01">
+        <select name="inorder" onchange="submit(this.form)">
+          <option value="new">登録が新しい順</option>
+          <option  value="new_date">投稿日時が新しい順</option>
+          <option  value="old_date">投稿日時が古い順</option>
+        </select>
+    </div>
+  </form>
     </header>
 
 
@@ -132,7 +142,7 @@
 									【User name】<%=artcles.getUser_name()%></p>
 								<input type="hidden" name="deleteId"
 									value="<%=artcles.getId()%>">
-						
+
 									<input class="item"
 									type="submit" value="削除">
 						</form>

@@ -59,7 +59,7 @@ public class QiitaDao {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-			//全部の記事表示
+			//記事表示(idの降順＝登録が新しい順)
 			String sql = "SELECT * FROM articles ORDER BY id DESC";
 
 			PreparedStatement pStatement = conn.prepareStatement(sql);
