@@ -60,7 +60,7 @@
 	</div>
 	<!--modal-->
 	 </div>
-	  <form action="" method="get">
+	  <form action="./Homeservlet" method="get">
      <div class="cp_ipselect cp_sl01">
         <select name="inorder" onchange="submit(this.form)">
           <option value="new">登録が新しい順</option>

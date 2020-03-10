@@ -27,6 +27,8 @@ public class Homeservlet extends HttpServlet {
 		//パラメーター
 		String deleteId=request.getParameter("deleteId");
 		String search=request.getParameter("searchword");
+		String sort=request.getParameter("inorder");
+
 
 		ArticlesManager articlesManager=new ArticlesManager();
 
@@ -34,6 +36,8 @@ public class Homeservlet extends HttpServlet {
 			articlesManager.deleteArticles(deleteId);
 		}else if (search!=null) {
 			articles=articlesManager.searchGetArticles(search);
+		}else if (sort!=null) {
+			//並べ替え処理
 		}
 
 
