@@ -90,5 +90,24 @@ public class ArticlesManager {
 		return resultArticles;
 
 	}
+	/**
+	 * 表示している記事の並べ替え
+	 * @param sort 何順(投稿日時新しい順、古い順)
+	 * @param articles 在表示されている記事
+	 * @return List<Article> 並べ替わった記事の一覧
+	 */
+	public List<Article> sortArticles(String sort,List<Article>articles) {
+
+		if (sort.equals("new_date")) {
+
+
+		}else if (sort.equals("old_date")) {
+
+		}
+
+
+		return articles;
+
+	}
 
 }
