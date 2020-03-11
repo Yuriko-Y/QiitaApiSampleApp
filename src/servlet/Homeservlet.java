@@ -37,7 +37,7 @@ public class Homeservlet extends HttpServlet {
 		}else if (search!=null) {
 			articles=articlesManager.searchGetArticles(search);
 		}else if (sort!=null) {
-			//並べ替え処理
+			articles=articlesManager.sortArticles(sort, articles);
 		}
 
 

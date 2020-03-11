@@ -1,6 +1,11 @@
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -99,10 +104,51 @@ public class ArticlesManager {
 	public List<Article> sortArticles(String sort,List<Article>articles) {
 
 		if (sort.equals("new_date")) {
+			Collections.sort(articles,new Comparator<Article>() {
+				Date date1;
+				Date date2;
+				@Override
+				public int compare(Article a, Article b) {
+					String dateString1=a.getDate();
+					String dateString2=b.getDate();
 
+					SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+					try {
+						date1=simpleDateFormat.parse(dateString1);
+						date2=simpleDateFormat.parse(dateString2);
+
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+
+					return date2.compareTo(date1);
+				}
+			});
 
 		}else if (sort.equals("old_date")) {
+			Collections.sort(articles,new Comparator<Article>() {
+				Date date1;
+				Date date2;
+				@Override
+				public int compare(Article a, Article b) {
+					String dateString1=a.getDate();
+					String dateString2=b.getDate();
 
+					SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+					try {
+						date1=simpleDateFormat.parse(dateString1);
+						date2=simpleDateFormat.parse(dateString2);
+
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+
+					return date1.compareTo(date2);
+				}
+			});
+
+		}else {
+			Collections.sort(articles, (a,b)-> {return b.getId()-a.getId();});
 		}
 
 

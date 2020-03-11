@@ -63,7 +63,8 @@
 	  <form action="./Homeservlet" method="get">
      <div class="cp_ipselect cp_sl01">
         <select name="inorder" onchange="submit(this.form)">
-          <option value="new">登録が新しい順</option>
+          <option value="">並べ替えメニュー</option>
+           <option value="new">登録が新しい順</option>
           <option  value="new_date">投稿日時が新しい順</option>
           <option  value="old_date">投稿日時が古い順</option>
         </select>
@@ -79,6 +80,7 @@
 	<%
 			ArticlesManager articlesManager=new ArticlesManager();
 			List<Article> articleList = articlesManager.newFiveArticles();
+			session.setAttribute("articles", articleList);
 	%>
 	<%
 		for (Article article : articleList) {
