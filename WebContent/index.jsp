@@ -42,7 +42,7 @@
 			URL:<input type="text" id="quiitaurl" name="input01">
 			<button id="submit">送信</button>
 
-			<form method="get" action="./Mainservlet">
+			<form method="get" action="./Homeservlet">
 				TITLE:<input type="text" id="qiita__title" name="qiitaTitle"
 					size="60"><br> NAME:<input type="text"
 					id="qiita__name" name="qiitaUser" size="10"><br> URL:<input

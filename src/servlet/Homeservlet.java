@@ -28,6 +28,11 @@ public class Homeservlet extends HttpServlet {
 		String deleteId = request.getParameter("deleteId");
 		String search = request.getParameter("searchword");
 		String sort = request.getParameter("inorder");
+		String qiitaTitle = request.getParameter("qiitaTitle");
+		String qiitaUser = request.getParameter("qiitaUser");
+		String qiitaUrl = request.getParameter("qiitaUrl");
+		String qiitaDate = request.getParameter("qiitaDate");
+		String qiitaTag = request.getParameter("qiitaTag");
 
 		ArticlesManager articlesManager = new ArticlesManager();
 
@@ -37,6 +42,8 @@ public class Homeservlet extends HttpServlet {
 			articles = articlesManager.searchGetArticles(search);
 		} else if (sort != null) {
 			articles = articlesManager.sortArticles(sort, articles);
+		}else {
+			articles = articlesManager.registerArticles(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag, articles);
 		}
 
 		//セッションに上書き
