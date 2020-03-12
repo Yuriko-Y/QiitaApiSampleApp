@@ -34,12 +34,12 @@ public class ArticlesManager {
 	 * @param  articles 現在表示されている記事
 	 * @return List<Article>
 	 */
-	public List<Article> deleteArticles(String deleteId,List<Article> articles) {
+	public List<Article> deleteArticles(String deleteId, List<Article> articles) {
 		qiitaDao.deleteSql(deleteId);
 		for (Iterator<Article> iterator = articles.iterator(); iterator.hasNext();) {
 			Article article = (Article) iterator.next();
-			int id=Integer.parseInt(deleteId);
-			if (article.getId()==id) {
+			int id = Integer.parseInt(deleteId);
+			if (article.getId() == id) {
 				iterator.remove();
 			}
 		}
@@ -50,13 +50,14 @@ public class ArticlesManager {
 	/**
 	 * データベースに記事を登録
 	 * @param qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag 登録する情報
-	 * @return なし
+	 * @param articles 現在表示されている記事
+	 * @return List<Article>
 	 */
 	public List<Article> registerArticles(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate,
-			String qiitaTag,List<Article> articles) {
+			String qiitaTag, List<Article> articles) {
 		qiitaDao.registerQiita(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag);
+		articles = this.newFiveArticles();
 		return articles;
-
 
 	}
 
