@@ -22,24 +22,22 @@ public class Homeservlet extends HttpServlet {
 			throws ServletException, IOException {
 		//今表示されている記事
 		HttpSession session = request.getSession();
-		List<Article> articles=(List<Article>) session.getAttribute("articles");
+		List<Article> articles = (List<Article>) session.getAttribute("articles");
 
 		//パラメーター
-		String deleteId=request.getParameter("deleteId");
-		String search=request.getParameter("searchword");
-		String sort=request.getParameter("inorder");
+		String deleteId = request.getParameter("deleteId");
+		String search = request.getParameter("searchword");
+		String sort = request.getParameter("inorder");
 
+		ArticlesManager articlesManager = new ArticlesManager();
 
-		ArticlesManager articlesManager=new ArticlesManager();
-
-		if (deleteId!=null) {
-			articlesManager.deleteArticles(deleteId);
-		}else if (search!=null) {
-			articles=articlesManager.searchGetArticles(search);
-		}else if (sort!=null) {
-			articles=articlesManager.sortArticles(sort, articles);
+		if (deleteId != null) {
+			articles = articlesManager.deleteArticles(deleteId, articles);
+		} else if (search != null) {
+			articles = articlesManager.searchGetArticles(search);
+		} else if (sort != null) {
+			articles = articlesManager.sortArticles(sort, articles);
 		}
-
 
 		//セッションに上書き
 		session.setAttribute("articles", articles);

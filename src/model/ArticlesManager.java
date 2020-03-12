@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -32,10 +31,20 @@ public class ArticlesManager {
 	/**
 	 * idが一致するものをデータベースから削除
 	 * @param  deleteId 消したい記事のid
-	 * @return なし
+	 * @param  articles 現在表示されている記事
+	 * @return List<Article>
 	 */
-	public void deleteArticles(String deleteId) {
+	public List<Article> deleteArticles(String deleteId,List<Article> articles) {
 		qiitaDao.deleteSql(deleteId);
+		for (Iterator<Article> iterator = articles.iterator(); iterator.hasNext();) {
+			Article article = (Article) iterator.next();
+			int id=Integer.parseInt(deleteId);
+			if (article.getId()==id) {
+				iterator.remove();
+			}
+		}
+
+		return articles;
 	}
 
 	/**
@@ -43,9 +52,12 @@ public class ArticlesManager {
 	 * @param qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag 登録する情報
 	 * @return なし
 	 */
-	public void registerArticles(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate,
-			String qiitaTag) {
+	public List<Article> registerArticles(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate,
+			String qiitaTag,List<Article> articles) {
 		qiitaDao.registerQiita(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag);
+		return articles;
+
+
 	}
 
 	/**
@@ -82,8 +94,6 @@ public class ArticlesManager {
 
 			resultSearch = resultSearch.replace(" ", ")(?=.*");
 
-
-
 			if (smallStringBuilder.toString().matches("^(?=.*" + resultSearch + ").*$")) {
 
 				resultArticles.add(article);
@@ -95,62 +105,61 @@ public class ArticlesManager {
 		return resultArticles;
 
 	}
+
 	/**
 	 * 表示している記事の並べ替え
 	 * @param sort 何順(投稿日時新しい順、古い順)
 	 * @param articles 在表示されている記事
 	 * @return List<Article> 並べ替わった記事の一覧
 	 */
-	public List<Article> sortArticles(String sort,List<Article>articles) {
+	public List<Article> sortArticles(String sort, List<Article> articles) {
 
 		if (sort.equals("new_date")) {
-			Collections.sort(articles,new Comparator<Article>() {
-				Date date1;
-				Date date2;
-				@Override
-				public int compare(Article a, Article b) {
-					String dateString1=a.getDate();
-					String dateString2=b.getDate();
+			Collections.sort(articles, (a, b) -> {
+				Date date1 = null;
+				Date date2 = null;
 
-					SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-					try {
-						date1=simpleDateFormat.parse(dateString1);
-						date2=simpleDateFormat.parse(dateString2);
+				String dateString1 = a.getDate();
+				String dateString2 = b.getDate();
 
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					date1 = simpleDateFormat.parse(dateString1);
+					date2 = simpleDateFormat.parse(dateString2);
 
-					return date2.compareTo(date1);
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
+
+				return date2.compareTo(date1);
+
 			});
 
-		}else if (sort.equals("old_date")) {
-			Collections.sort(articles,new Comparator<Article>() {
-				Date date1;
-				Date date2;
-				@Override
-				public int compare(Article a, Article b) {
-					String dateString1=a.getDate();
-					String dateString2=b.getDate();
+		} else if (sort.equals("old_date")) {
+			Collections.sort(articles, (a, b) -> {
+				Date date1 = null;
+				Date date2 = null;
+				String dateString1 = a.getDate();
+				String dateString2 = b.getDate();
 
-					SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-					try {
-						date1=simpleDateFormat.parse(dateString1);
-						date2=simpleDateFormat.parse(dateString2);
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				try {
+					date1 = simpleDateFormat.parse(dateString1);
+					date2 = simpleDateFormat.parse(dateString2);
 
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-
-					return date1.compareTo(date2);
+				} catch (ParseException e) {
+					e.printStackTrace();
 				}
+
+				return date1.compareTo(date2);
+
 			});
 
-		}else {
-			Collections.sort(articles, (a,b)-> {return b.getId()-a.getId();});
+		} else {
+			Collections.sort(articles, (a, b) -> {
+				return b.getId() - a.getId();
+			});
 		}
-
 
 		return articles;
 
