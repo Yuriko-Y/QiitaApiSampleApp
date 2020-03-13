@@ -39,9 +39,9 @@ public class QiitaDao {
 			pStatement.setString(4, qiitaTag);
 			pStatement.setString(5, qiitaDate);
 
-			int result=pStatement.executeUpdate();
+			int result = pStatement.executeUpdate();
 
-			if (result!=1) {
+			if (result != 1) {
 				return false;
 			}
 
@@ -51,7 +51,6 @@ public class QiitaDao {
 		}
 		return true;
 	}
-
 
 	public List<Article> findAll() {
 		List<Article> articleList = new ArrayList<Article>();
@@ -75,7 +74,7 @@ public class QiitaDao {
 				String tag = rSet.getString("tag");
 				String date = rSet.getString("date");
 
-				Article article =new Article(id, url, title, user_name, tag, date);
+				Article article = new Article(id, url, title, user_name, tag, date);
 				articleList.add(article);
 
 			}
@@ -90,72 +89,73 @@ public class QiitaDao {
 		return articleList;
 
 	}
+
 	//idが一致するものをデータベースから削除
-		public boolean deleteSql(String parameterId) {
+	public boolean deleteSql(String parameterId) {
 
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection conn = DriverManager.getConnection(URL, USER, PASS);
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-				String sql = "DELETE FROM articles WHERE id=?";
+			String sql = "DELETE FROM articles WHERE id=?";
 
-				PreparedStatement pStatement = conn.prepareStatement(sql);
-				pStatement.setString(1, parameterId);
+			PreparedStatement pStatement = conn.prepareStatement(sql);
+			pStatement.setString(1, parameterId);
 
-				int result = pStatement.executeUpdate();
-				if (result != 1) {
-					return false;
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
+			int result = pStatement.executeUpdate();
+			if (result != 1) {
 				return false;
-
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-				return false;
-
 			}
-			return true;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
 
 		}
-		public List<Article> allArticles() {
-			List<Article> articleList = new ArrayList<Article>();
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection conn = DriverManager.getConnection(URL, USER, PASS);
+		return true;
 
-				//全部の記事表示
-				String sql = "SELECT * FROM articles";
+	}
 
-				PreparedStatement pStatement = conn.prepareStatement(sql);
+	public List<Article> allArticles() {
+		List<Article> articleList = new ArrayList<Article>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
-				ResultSet rSet = pStatement.executeQuery();
+			//全部の記事表示
+			String sql = "SELECT * FROM articles";
 
-				while (rSet.next()) {
+			PreparedStatement pStatement = conn.prepareStatement(sql);
 
-					int id = rSet.getInt("id");
-					String url = rSet.getString("url");
-					String title = rSet.getString("title");
-					String user_name = rSet.getString("user_name");
-					String tag = rSet.getString("tag");
-					String date = rSet.getString("date");
+			ResultSet rSet = pStatement.executeQuery();
 
-					Article article =new Article(id, url, title, user_name, tag, date);
-					articleList.add(article);
+			while (rSet.next()) {
 
-				}
+				int id = rSet.getInt("id");
+				String url = rSet.getString("url");
+				String title = rSet.getString("title");
+				String user_name = rSet.getString("user_name");
+				String tag = rSet.getString("tag");
+				String date = rSet.getString("date");
 
-				return articleList;
-			} catch (SQLException e) {
-				e.printStackTrace();
-				return null;
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				Article article = new Article(id, url, title, user_name, tag, date);
+				articleList.add(article);
+
 			}
+
 			return articleList;
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
+		return articleList;
 
+	}
 
 }

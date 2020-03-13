@@ -1,57 +1,61 @@
-.content__modal{
-    margin: 0 110px;
-    padding: 40px;
+.content__modal {
+	margin: 0 110px;
+	padding: 40px;
 }
+
 .js-modal-open {
-    display: inline-block;
-    width: 100px;
-    text-align: center;
-    font-size: 16px;
-    color: #FFF;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 12px 24px;
-    border-radius: 30px;
-    background-image: linear-gradient(-30deg, #FA8A6E, #FFAF63);
-    transition: .5s;
-    background-size: 200%;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-  }
+	display: inline-block;
+	width: 100px;
+	text-align: center;
+	font-size: 16px;
+	color: #FFF;
+	text-decoration: none;
+	font-weight: bold;
+	padding: 12px 24px;
+	border-radius: 30px;
+	background-image: linear-gradient(-30deg, #FA8A6E, #FFAF63);
+	transition: .5s;
+	background-size: 200%;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	appearance: none;
+}
 
+.btn-gradation:hover {
+	background-position: right center;
+}
 
-  .btn-gradation:hover {
-    background-position: right center;
-  }
-.modal{
-    display: none;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100%;
+.modal {
+	display: none;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
-.modal__bg{
-    background: rgba(0,0,0,0.8);
-    height: 100vh;
-    position: absolute;
-    width: 100%;
+
+.modal__bg {
+	background: rgba(0, 0, 0, 0.8);
+	height: 100vh;
+	position: absolute;
+	width: 100%;
 }
-.modal__content{
-    background-image: linear-gradient(-30deg, #FA8A6E, #FFAF63);
-    /* background: #FFAF63; */
-    left: 50%;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 60%;
+
+.modal__content {
+	background-image: linear-gradient(-30deg, #FA8A6E, #FFAF63);
+	/* background: #FFAF63; */
+	left: 50%;
+	padding: 40px;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 60%;
 }
-#modal__title{
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-    color: #E3794D;
+
+#modal__title {
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	color: #E3794D;
 }

@@ -42,7 +42,7 @@ public class Homeservlet extends HttpServlet {
 			articles = articlesManager.searchGetArticles(search);
 		} else if (sort != null) {
 			articles = articlesManager.sortArticles(sort, articles);
-		}else {
+		} else {
 			articles = articlesManager.registerArticles(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag, articles);
 		}
 
