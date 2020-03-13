@@ -26,8 +26,8 @@ public class Homeservlet extends HttpServlet {
 
 		//パラメーター
 		String deleteId = request.getParameter("deleteId");
-		String search = request.getParameter("searchword");
-		String sort = request.getParameter("inorder");
+		String searchWord = request.getParameter("searchWord");
+		String sortType = request.getParameter("sortType");
 		String qiitaTitle = request.getParameter("qiitaTitle");
 		String qiitaUser = request.getParameter("qiitaUser");
 		String qiitaUrl = request.getParameter("qiitaUrl");
@@ -38,10 +38,10 @@ public class Homeservlet extends HttpServlet {
 
 		if (deleteId != null) {
 			articles = articlesManager.deleteArticles(deleteId, articles);
-		} else if (search != null) {
-			articles = articlesManager.searchGetArticles(search);
-		} else if (sort != null) {
-			articles = articlesManager.sortArticles(sort, articles);
+		} else if (searchWord != null) {
+			articles = articlesManager.searchGetArticles(searchWord);
+		} else if (sortType != null) {
+			articles = articlesManager.sortArticles(sortType, articles);
 		} else {
 			articles = articlesManager.registerArticles(qiitaTitle, qiitaUser, qiitaUrl, qiitaDate, qiitaTag, articles);
 		}

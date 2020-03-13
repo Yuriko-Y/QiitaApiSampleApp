@@ -30,7 +30,7 @@
 	<header>
 		<div class="searchbox__left">
 			<form method="get" action="./Homeservlet" class="search_container">
-				<input type="text" size="25" placeholder="キーワード検索" name="searchword">
+				<input type="text" size="25" placeholder="キーワード検索" name="searchWord">
 				<input type="submit" value="&#xf002">
 			</form>
 			<div class="content__modal">
@@ -66,7 +66,7 @@
 	<div>
 		<form action="./Homeservlet" method="get">
 			<div class="cp_ipselect cp_sl01">
-				<select name="inorder" onchange="submit(this.form)">
+				<select name="sortType" onchange="submit(this.form)">
 					<option value="">並べ替えメニュー</option>
 					<option value="new">登録が新しい順</option>
 					<option value="new_date">投稿日時が新しい順</option>
