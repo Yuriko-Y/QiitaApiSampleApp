@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="register.jsp" %>
 <%
 	List<Article> articles = (List<Article>) session.getAttribute("articles");
 %>
@@ -12,31 +13,34 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="cssnew/search.css">
+<!-- <link rel="stylesheet" href="cssnew/search.css"> -->
 <link rel="stylesheet" href="cssnew/sample.css">
 <link rel="stylesheet" href="cssnew/reset.css">
-<link rel="stylesheet" href="cssnew/modal.css">
+<!-- <link rel="stylesheet" href="cssnew/modal.css"> -->
 <link rel="stylesheet" href="cssnew/select.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="js/register.js"></script>
 <script type="text/javascript" src="js/delete.js"></script>
+ <script src="js/register.js"></script>
 <title>Miita</title>
 </head>
 <body>
 	<header>
-		<div class="searchbox__left">
+		<!--  <div class="searchbox__left">
 			<form method="get" action="./Homeservlet" class="search_container">
 				<input type="text" size="25" placeholder="キーワード検索" name="search">
 				<input type="submit" value="&#xf002">
-			</form>
-			<div class="content__modal">
+			</form> -->
+
+
+		<!-- 	<div class="content__modal">
 				<button class="js-modal-open">登録</button>
-				<!-- <a class="js-modal-open" href="">クリックでモーダルを表示</a> -->
+				<a class="js-modal-open" href="">クリックでモーダルを表示</a>
 			</div>
+
 			<div class="modal js-modal">
 				<div class="modal__bg js-modal-close">
 					<div class="modal__content">
@@ -56,14 +60,14 @@
 							<input type="submit" value="登録" />
 						</form>
 					</div>
-					<!--modal__inner-->
+					modal__inner
 				</div>
-				<!--modal-->
-			</div>
-		</div>
-	</header>
+				modal -->
+			<!-- </div> -->
 
-	<div>
+
+
+
 		<form action="./Homeservlet" method="get">
 			<%
 				String selectedItem = (String) request.getParameter("sortType");
@@ -80,8 +84,8 @@
 				</select>
 			</div>
 		</form>
-	</div>
 
+	</header>
 
 
 	<%
