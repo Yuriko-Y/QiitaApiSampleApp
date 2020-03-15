@@ -30,7 +30,7 @@
 	<header>
 		<div class="searchbox__left">
 			<form method="get" action="./Homeservlet" class="search_container">
-				<input type="text" size="25" placeholder="キーワード検索" name="searchWord">
+				<input type="text" size="25" placeholder="キーワード検索" name="search">
 				<input type="submit" value="&#xf002">
 			</form>
 			<div class="content__modal">

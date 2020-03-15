@@ -26,7 +26,7 @@ public class Homeservlet extends HttpServlet {
 
 		//パラメーター
 		String deleteId = request.getParameter("deleteId");
-		String searchWord = request.getParameter("searchWord");
+		String searchWord = request.getParameter("search");
 		String sortType = request.getParameter("sortType");
 		String qiitaTitle = request.getParameter("qiitaTitle");
 		String qiitaUser = request.getParameter("qiitaUser");
