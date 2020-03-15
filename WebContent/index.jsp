@@ -65,12 +65,18 @@
 
 	<div>
 		<form action="./Homeservlet" method="get">
+			<%
+				String selectedItem = (String) request.getParameter("sortType");
+			%>
 			<div class="cp_ipselect cp_sl01">
 				<select name="sortType" onchange="submit(this.form)">
 					<option value="">並べ替えメニュー</option>
-					<option value="new">登録が新しい順</option>
-					<option value="new_date">投稿日時が新しい順</option>
-					<option value="old_date">投稿日時が古い順</option>
+					<option value="new"
+						<%="new".equals(selectedItem) ? "selected=\"selected\"" : ""%>>登録が新しい順</option>
+					<option value="new_date"
+						<%="new_date".equals(selectedItem) ? "selected=\"selected\"" : ""%>>投稿日時が新しい順</option>
+					<option value="old_date"
+						<%="old_date".equals(selectedItem) ? "selected=\"selected\"" : ""%>>投稿日時が古い順</option>
 				</select>
 			</div>
 		</form>

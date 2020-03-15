@@ -22,6 +22,7 @@ public class Homeservlet extends HttpServlet {
 			throws ServletException, IOException {
 		//今表示されている記事
 		HttpSession session = request.getSession();
+		@SuppressWarnings("unchecked")
 		List<Article> articles = (List<Article>) session.getAttribute("articles");
 
 		//パラメーター

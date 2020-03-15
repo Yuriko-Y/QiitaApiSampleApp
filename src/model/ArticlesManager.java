@@ -72,18 +72,15 @@ public class ArticlesManager {
 		//ヒットした記事だけ入れるリスト
 		List<Article> resultArticles = new ArrayList<Article>();
 
-
 		//全角を半角に
-		Transliterator transliteratorToSmall=Transliterator.getInstance("Fullwidth-Halfwidth");
-		search=transliteratorToSmall.transliterate(search);
+		Transliterator transliteratorToSmall = Transliterator.getInstance("Fullwidth-Halfwidth");
+		search = transliteratorToSmall.transliterate(search);
 
 		Transliterator transLiterKana = Transliterator.getInstance("Katakana-Hiragana");
 		search = transLiterKana.transliterate(search);
 		search = search.toLowerCase();
-		search=search.replace("*", "");
-		search=search.replace("　", " ");
+		search = search.replace("*", "");
 		search = search.replaceAll(" ", ")(?=.*");
-
 
 		Iterator<Article> iterator = articles.iterator();
 		while (iterator.hasNext()) {
@@ -100,7 +97,6 @@ public class ArticlesManager {
 
 			String wordFromDB = stringBuilder.toString().toLowerCase();
 			wordFromDB = transLiterKana.transliterate(wordFromDB);
-
 
 			if (wordFromDB.matches("^(?=.*" + search + ").*$")) {
 
