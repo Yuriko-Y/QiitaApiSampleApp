@@ -19,14 +19,21 @@ public class QiitaDao {
 	static final String USER = "root";
 	static final String PASS = "root";
 
+	//コンストラクタ,MySQL に接続する
+	public QiitaDao() {
+		super();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
 	//登録メソッド
 	public boolean registerQiita(String qiitaTitle, String qiitaUser, String qiitaUrl, String qiitaDate,
 			String qiitaTag) {
-		try {
-			//MySQL に接続する
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			//データベースに接続
-			Connection conn = DriverManager.getConnection(URL, USER, PASS);
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
+
 			//SQL文
 			String sql = "INSERT INTO articles(url,title,user_name,tag,date)"
 					+ " VALUES(?,?,?,?,?)";
@@ -45,7 +52,7 @@ public class QiitaDao {
 				return false;
 			}
 
-		} catch (SQLException | ClassNotFoundException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -54,9 +61,7 @@ public class QiitaDao {
 
 	public List<Article> findAll() {
 		List<Article> articleList = new ArrayList<Article>();
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(URL, USER, PASS);
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
 
 			//記事表示(idの降順＝登録が新しい順)
 			String sql = "SELECT * FROM articles ORDER BY id DESC";
@@ -83,19 +88,14 @@ public class QiitaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
-		return articleList;
 
 	}
 
 	//idが一致するものをデータベースから削除
 	public boolean deleteSql(String parameterId) {
 
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(URL, USER, PASS);
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);) {
 
 			String sql = "DELETE FROM articles WHERE id=?";
 
@@ -111,10 +111,6 @@ public class QiitaDao {
 			e.printStackTrace();
 			return false;
 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			return false;
-
 		}
 		return true;
 
@@ -122,9 +118,9 @@ public class QiitaDao {
 
 	public List<Article> allArticles() {
 		List<Article> articleList = new ArrayList<Article>();
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(URL, USER, PASS);
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);){
+//			Class.forName("com.mysql.cj.jdbc.Driver");
+//			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
 			//全部の記事表示
 			String sql = "SELECT * FROM articles";
@@ -151,10 +147,7 @@ public class QiitaDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
-		return articleList;
 
 	}
 

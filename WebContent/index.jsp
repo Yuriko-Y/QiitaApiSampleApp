@@ -29,45 +29,6 @@
 </head>
 <body>
 	<header>
-		<!--  <div class="searchbox__left">
-			<form method="get" action="./Homeservlet" class="search_container">
-				<input type="text" size="25" placeholder="キーワード検索" name="search">
-				<input type="submit" value="&#xf002">
-			</form> -->
-
-
-		<!-- 	<div class="content__modal">
-				<button class="js-modal-open">登録</button>
-				<a class="js-modal-open" href="">クリックでモーダルを表示</a>
-			</div>
-
-			<div class="modal js-modal">
-				<div class="modal__bg js-modal-close">
-					<div class="modal__content">
-						<h1 id="modal__title">登録画面</h1>
-						URL:<input type="text" id="quiitaurl" name="input01">
-						<button id="submit">送信</button>
-
-						<form method="get" action="./Homeservlet">
-							TITLE:<input type="text" id="qiita__title" name="qiitaTitle"
-								size="60"><br> NAME:<input type="text"
-								id="qiita__name" name="qiitaUser" size="10"><br>
-							URL:<input type="text" id="qiita__url" name="qiitaUrl" size="50"><br>
-							DATE:<input type="text" id="qiita__date" name="qiitaDate"
-								size="10"><br> TAG:<input type="text"
-								id="qiita__tag" name="qiitaTag" size="30"><br>
-							<button class="js-modal-close">閉じる</button>
-							<input type="submit" value="登録" />
-						</form>
-					</div>
-					modal__inner
-				</div>
-				modal -->
-			<!-- </div> -->
-
-
-
-
 		<form action="./Homeservlet" method="get">
 			<%
 				String selectedItem = (String) request.getParameter("sortType");
