@@ -26,6 +26,7 @@
 	border: 1px solid #999;
 	border-radius: 2px;
 	background: #ffffff;
+	z-index: 10;
 }
 .cp_ipselect.cp_sl01::before {
 	position: absolute;
