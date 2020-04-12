@@ -119,8 +119,6 @@ public class QiitaDao {
 	public List<Article> allArticles() {
 		List<Article> articleList = new ArrayList<Article>();
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS);){
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			Connection conn = DriverManager.getConnection(URL, USER, PASS);
 
 			//全部の記事表示
 			String sql = "SELECT * FROM articles";
